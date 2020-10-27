@@ -37,7 +37,7 @@ const questions = [
 
 const button = document.getElementById('start-button'); 
 const nextButton = document.getElementById('next');
-const backButton = document.getElementById('back');
+// const backButton = document.getElementById('back');
 const submitButton = document.getElementById('submit');
 const quizContainer = document.getElementById('quiz-container');
 
@@ -52,9 +52,9 @@ nextButton.addEventListener('click', function() {
   onNext(questions);
 });
 
-backButton.addEventListener('click', function() {
-  onBack(questions);
-})
+// backButton.addEventListener('click', function() {
+//   onBack(questions);
+// })
 
 submitButton.addEventListener('click', function() {
   getResults();
@@ -98,15 +98,20 @@ for(let i=0; i < questions.length; i++) {
 function onNext(questions) {
   checkAnswer(questions, counter);
   counter++; 
-  if (counter >= 1) backButton.classList.remove('hide');
-  if (counter === questions.length) nextButton.classList.add('hide'); submitButton.classList.remove('hide'); 
+  // if (counter >= 1) backButton.classList.remove('hide');
+  console.log(counter === questions.length, 'counter', counter, questions.length);
+  if (counter === questions.length - 1) { 
+    nextButton.classList.add('hide'); 
+    submitButton.classList.remove('hide'); 
+    console.log('is running');
+  }
   renderQuestion(questions, counter);
 }
 
 function onBack(questions) {
-  counter--;
-  if (counter > 1) backButton.classList.add('hide');
-  renderQuestion(questions, counter);
+  // counter--;
+  // if (counter > 1) backButton.classList.add('hide');
+  // renderQuestion(questions, counter);
 }
 
 function checkAnswer(questions, counter) {
@@ -121,6 +126,9 @@ function checkAnswer(questions, counter) {
 }
 
 function getResults() {
-  console.log('RESULTS'); 
+  const output = []; 
+
+  output.push('<div class="score">' + score + '</div>');
+  quizContainer.innerHTML = output.join('');
 }
 
