@@ -1,7 +1,26 @@
+@font-face {
+  font-family: 'BLACK METAL Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('BLACK METAL Regular'), url('BLACK METAL.woff') format('woff');
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'BLACK METAL Regular';
+}
+
 h1 {
-  color: hotpink;
+  color: #ffffff;
+  font-size: 80px;
+  font-family: 'BLACK METAL Regular';
 }
 
 .hide {
   display: none;
+}
+
+label {
+  font-size: 32px;
 }

@@ -81,7 +81,7 @@ for(let i=0; i < questions.length; i++) {
             + '<input type="radio" name="question'+ i +'" value="' + letter + '" />'
             + letter + ': '
             + questions[i].answers[letter]
-          + '<label>'
+          + '</label>'
         );
       }
 
