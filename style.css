@@ -1,20 +1,31 @@
 @font-face {
-  font-family: 'BLACK METAL Regular';
-  font-style: normal;
+  font-family: 'xxii_ultimate-blacfallenangel';
+  src: url('./bm-font/xxii_ultimate-black-metal-webfont.woff2') format('woff2'),
+       url('./bm-font/xxii_ultimate-black-metal-webfont.woff') format('woff');
   font-weight: normal;
-  src: local('BLACK METAL Regular'), url('BLACK METAL.woff') format('woff');
+  font-style: normal;
 }
+
 
 body {
   background-color: #000000;
   color: #ffffff;
-  font-family: 'BLACK METAL Regular';
+  font-family: 'xxii_ultimate-blacfallenangel';
+  text-align: center;
+  height: auto;
+  padding-bottom: 30px;
 }
 
 h1 {
   color: #ffffff;
-  font-size: 80px;
-  font-family: 'BLACK METAL Regular';
+  font-size: 140px;
+  letter-spacing: 8px;
+  font-family: 'xxii_ultimate-blacfallenangel';
+}
+
+.wrapper {
+  max-width: 768px;
+  margin: 0 auto;
 }
 
 .hide {
@@ -24,3 +35,31 @@ h1 {
 label {
   font-size: 32px;
 }
+
+.button {
+  font-family: 'xxii_ultimate-blacfallenangel';
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 32px;
+  padding: 15px 30px 3px;
+  border: 1px solid #ffffff;
+  line-height: 2.01em; 
+}
+
+#quiz-container {
+  text-align: left;
+}
+
+.paragraph {
+  font-size: 40px;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+}
+
+.question {
+  font-size: 42px;
+}
+
