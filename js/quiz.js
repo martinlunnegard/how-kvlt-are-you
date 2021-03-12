@@ -4,12 +4,16 @@ const nextButton = document.getElementById('next');
 // const backButton = document.getElementById('back');
 const submitButton = document.getElementById('submit');
 const againButton = document.getElementById('again');
+const player = document.getElementById('player');
 const quizContainer = document.getElementById('quiz-container');
 
+// Globals 
+let playerName; 
 let score = 0;
 let counter = 0;
 
 button.addEventListener('click', function() {
+  playerName = player.value;
   startQuiz();
 });
 
@@ -32,6 +36,7 @@ againButton.addEventListener('click', function() {
 const startQuiz = () => {
   intro.classList.add('hide');
   button.classList.add('hide');
+  player.classList.add('hide');
   nextButton.classList.remove('hide');
   renderQuestion(questions, counter);
 }
@@ -72,7 +77,6 @@ const onNext = (questions) => {
   if (counter === questions.length - 1) { 
     nextButton.classList.add('hide'); 
     submitButton.classList.remove('hide'); 
-    console.log('is running');
   }
   renderQuestion(questions, counter);
 }
@@ -101,24 +105,44 @@ const getResults = (question, counter) => {
 }
 
 const renderPlayerResults = (playerScore) => {
+  const { tier, message } = calculateResults(playerScore)
   againButton.classList.remove('hide');
   const output = [];
   const playerResult = `
     <div class="score">
-      You are definitley a true poser! Your score was: ${playerScore} points.. Futile
+      <div>${playerName} you scored ${playerScore}</div>
+      <div>Verdict: ${tier}</div> 
+      <div>${message}</div>
     </div>`
   output.push(playerResult);
   quizContainer.innerHTML = output.join('');  
+}
+
+const calculateResults = (score) => {
+  let playerTier; 
+  
+  if(score <= 2) {
+    playerTier = "Poser"
+  } else if (score >= 3 && score <= 6) {
+    playerTier = "Joke metal"
+  } else if (score >= 6 && score <= 9) {
+    playerTier = "Prospect"
+  } else if (score === 10) {
+    playerTier = "Trve kvlt"
+  } 
+
+  const result = tiers.find(item => item.tier === playerTier)
+  return result
 }
 
 const resetQuiz = () => {
   location.reload();
 }
 
+// TODOS
+
 // Back function
-// Calculate player level based
 // Count up points 
 // Gifs for each tier
-
-// Player name
-// Scoreboard (Backend)
+// Timer
+// Scoreboard Tab (Backend)
