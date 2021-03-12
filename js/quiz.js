@@ -1,7 +1,9 @@
+const intro = document.getElementById('intro');
 const button = document.getElementById('start-button'); 
 const nextButton = document.getElementById('next');
 // const backButton = document.getElementById('back');
 const submitButton = document.getElementById('submit');
+const againButton = document.getElementById('again');
 const quizContainer = document.getElementById('quiz-container');
 
 let score = 0;
@@ -20,17 +22,21 @@ nextButton.addEventListener('click', function() {
 // })
 
 submitButton.addEventListener('click', function() {
-  getResults();
+  getResults(questions, counter);
 })
 
-function startQuiz() {
+againButton.addEventListener('click', function() {
+  resetQuiz();
+})
+
+const startQuiz = () => {
+  intro.classList.add('hide');
   button.classList.add('hide');
   nextButton.classList.remove('hide');
   renderQuestion(questions, counter);
 }
 
-function renderQuestion(questions, counter) {
-console.log(score, 'Player Score');
+const renderQuestion = (questions, counter) => {
 let output = []
 let answers; 
 
@@ -58,7 +64,7 @@ for(let i=0; i < questions.length; i++) {
   quizContainer.innerHTML = output.join('');
 }
 
-function onNext(questions) {
+const onNext = (questions) => {
   checkAnswer(questions, counter);
   counter++; 
   // if (counter >= 1) backButton.classList.remove('hide');
@@ -88,10 +94,31 @@ function checkAnswer(questions, counter) {
   }
 }
 
-function getResults() {
-  const output = []; 
-
-  output.push('<div class="score">' + score + '</div>');
-  quizContainer.innerHTML = output.join('');
+const getResults = (question, counter) => {
+  submitButton.classList.add('hide');
+  checkAnswer(question, counter);
+  renderPlayerResults(score);
 }
 
+const renderPlayerResults = (playerScore) => {
+  againButton.classList.remove('hide');
+  const output = [];
+  const playerResult = `
+    <div class="score">
+      You are definitley a true poser! Your score was: ${playerScore} points.. Futile
+    </div>`
+  output.push(playerResult);
+  quizContainer.innerHTML = output.join('');  
+}
+
+const resetQuiz = () => {
+  location.reload();
+}
+
+// Back function
+// Calculate player level based
+// Count up points 
+// Gifs for each tier
+
+// Player name
+// Scoreboard (Backend)
